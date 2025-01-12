@@ -31,7 +31,7 @@ jobs:
       run: |
          git config --local user.email "18064625480@163.com"
          git config --local user.name "FireStar0507"
-         git pullS
+         git pull
          git add README.md
          git add bing-wallpaper.md
          git add picture/*
