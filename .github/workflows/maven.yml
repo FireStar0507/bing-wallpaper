@@ -1,17 +1,14 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: 更新bing壁纸
 
 on:
   push:
     branches: [ main ]
   schedule:
-    - cron:  '2 7 * * *'
-    # 每天中国时间0点2分 (UTC时间前一天16点2分)
-    - cron:  '2 16 * * *'
-    # 每天UTC时间0点2分
-    - cron:  '2 0 * * *'
+    - cron:  '0 0 * * *'
+    - cron:  '0 16 * * *'
 
 jobs:
   build:
@@ -19,30 +16,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - uses: actions/checkout@v3
+    - name: 设置JDK1.8
+      uses: actions/setup-java@v3
       with:
         java-version: 1.8
-    - name: current date
+    - name: 检查当前日期
       run: date
-    - name: Build with Maven
+    - name: 使用Maven编译
       run: mvn -B package --file pom.xml
-    - name: Run Java Application
+    - name: 运行Java程序
       run: java -jar target/bing-wallpaper-jar-with-dependencies.jar
-    - name: Commit files
+    - name: 提交文件
       run: |
-         git config --local user.email "niumoo@126.com"
-         git config --local user.name "niumoo"
-         git pull
+         git config --local user.email "18064625480@163.com"
+         git config --local user.name "FireStar0507"
+         git pullS
          git add README.md
          git add bing-wallpaper.md
          git add picture/*
          git add docs/*
          git add zh-cn/*
          git commit -m "update readme.md"
-    - name: Push changes
+    - name: 推送更改
       uses:  ad-m/github-push-action@master
       with:
-         github_token: ${{ secrets.MY_GIT_TOKEN }}
+         github_token: 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
          branch: main
